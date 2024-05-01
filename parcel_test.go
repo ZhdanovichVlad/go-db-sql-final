@@ -57,7 +57,7 @@ func TestAddGetDelete(t *testing.T) {
 	err = store.Delete(id)
 	require.NoError(t, err, "Error in Delete function")
 	row, err = store.Get(id)
-	require.Error(t, err, "Error in  Delete function")
+	require.ErrorIs(t, err, sql.ErrNoRows, "Error in  Delete function. The function returns an error different from ErrNoRows")
 	require.Empty(t, row, "Error in Delete function. The function returns values")
 
 }
